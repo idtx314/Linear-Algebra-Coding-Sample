@@ -20,11 +20,16 @@ struct matrix {
     int height;
     int width;
 
-    // matrix(double* input_data, int input_height, int input_width)
-    // //use this -> to reference member functions, but not member data?
+    matrix(std::vector<double> input_data, int input_height, int input_width)
+    {
+        data   = input_data;
+        height = input_height;
+        width  = input_width;
+    }
 
 
-    // inline matrix multiply (matrix multiplier)
+    //use this -> to reference member functions, but not member data?
+    // inline transpose (matrix multiplier)
 };
 
 
