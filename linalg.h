@@ -3,7 +3,7 @@ Instructions and license go in here
 */
 
 
-// Include guard
+// Include Guard
 #ifndef LALG_H
 #define LALG_H
 
@@ -11,12 +11,10 @@ Instructions and license go in here
 // Includes
 #include<iostream>
 #include<string>
-#include <vector>
+#include<vector>
 
 
-// Typedefs
-// public and private library variables, intern, extern, structs, etc
-// Be sure that global variables are limited in scope to being used in the library if they aren't meant for outside use.
+// Global Variables
 struct matrix {
     std::vector<double> data;
     int height;
@@ -27,25 +25,18 @@ struct matrix {
         height = input_height;
         width  = input_width;
     }
-
-
-    //use this -> to reference member functions, but not member data?
-    // inline transpose (matrix multiplier)
 };
 
 
 
 
 // Functions
-// need to use inlining so the compiler can discard extra definitions, because header library may be included in multiple translation units in the project. Include guards only work within a single translation unit!
-// Member functions defined within a class(?) are implicitly inline. If they are defined outside the class definition, they must be marked explicitly. Declaring them as inline within the class will apply the label to all external definitions.
 inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
     // This function performs matrix multiplication of the first input by the second input.
 
     // Initialize variables
     int output_height = multiplicand.height;
     int output_width  = multiplier.width;
-    //output length is height*width
     std::vector<double> output_data;
 
     // Sanity check input matrix dimensions
