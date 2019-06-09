@@ -47,6 +47,12 @@ int main(void)
     }
     std::cout << m.height << " " << m.width << std::endl;
 
+    try{
+        matrix_multiply(mat_in_1, mat_in_2);
+    } catch (std::string e){
+        std::cout << e << std:: endl;
+    }
+
 
     return 0;
 }
