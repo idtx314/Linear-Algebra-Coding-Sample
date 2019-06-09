@@ -22,7 +22,7 @@ struct matrix {
     int height;
     int width;
 
-    matrix(std::vector<double> input_data, int input_height, int input_width){
+    matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
         data   = input_data;
         height = input_height;
         width  = input_width;
@@ -48,27 +48,24 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
     //output length is height*width
     std::vector<double> output_data;
 
-    //Sanity check matrix dimensions
+    // Sanity check input matrix dimensions
     if (multiplicand.width != multiplier.height){
         throw std::string("Width of input matrix 1 does not match height of input matrix 2. Multiplication is not defined!");
     }
 
     double sum = 0;
-
-    // For each  output matrix row
+    // For each position in the output matrix
     for (int i=0; i<output_height; i++){
-        // And column
         for (int j=0; j<output_width; j++){
-            // Cycle through products and keep a rolling sum
+            // Calculate the result of matrix multiplication
             for (int k=0; k<multiplier.height; k++){
                 sum = sum + multiplicand.data[i*multiplicand.width+k]*multiplier.data[k*multiplier.width+j];
             }
-            // Then add the total value to the output data vector.
+            // Then append the result to the output data vector.
             output_data.push_back(sum);
             sum = 0;
         }
     }
-
 
     // Initialize the output matrix and return it
     matrix output_matrix(output_data, output_height, output_width);
