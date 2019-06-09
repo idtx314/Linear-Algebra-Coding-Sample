@@ -25,10 +25,6 @@ struct matrix {
 
 
     // inline matrix multiply (matrix multiplier)
-    {
-
-
-    }
 };
 
 
@@ -37,18 +33,18 @@ struct matrix {
 // Functions
 // need to use inlining so the compiler can discard extra definitions, because header may be included in multiple translation units in the project. Include guards only work within a single translation unit!
 // Member functions defined within a class are implicitly inline. If they are defined outside the class definition, they must be marked explicitly. Declaring them as inline within the class will apply the label to all external definitions.
-intern void matrix_multiply(double* array1, int height_1, int width_1, double* array2, int height_2, int width_2, double* array3, int height_3, int width_3)
-{
-    // Result array will have to be precisely correct dimension. This is foolish, I'm going for the OO approach.
-}
+// inline void matrix_multiply(double* array1, int height_1, int width_1, double* array2, int height_2, int width_2, double* array3, int height_3, int width_3)
+// {
+//     // Result array will have to be precisely correct dimension. This is foolish, I'm going for the OO approach.
+// }
 
 
 
-intern void matrix_transpose(double* array1, int height_1, int width_1)
-{
-    // I could alter the data in the original array via reference
-    // Might actually be easier to do the OO approach
-}
+// inline void matrix_transpose(double* array1, int height_1, int width_1)
+// {
+//     // I could alter the data in the original array via reference
+//     // Might actually be easier to do the OO approach
+// }
 
 
 
