@@ -54,7 +54,7 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
     }
 
     double sum = 0;
-    // For each position in the output matrix
+    // Iterate across the rows of the output matrix
     for (int i=0; i<output_height; i++){
         for (int j=0; j<output_width; j++){
             // Calculate the result of matrix multiplication
@@ -74,18 +74,26 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
 
 
 
-// inline void matrix_transpose(double* array1, int height_1, int width_1){
-//     // I could alter the data in the original array via reference
-//     // Might actually be easier to do the OO approach
-// }
+inline matrix matrix_transpose(matrix input){
+    // This function takes the transpose of the input matrix and returns it as a new matrix. The input matrix is unchanged.
 
+    // Initialize variables
+    int output_height = input.width;
+    int output_width = input.height;
+    std::vector<double> output_data;
 
+    // Iterate down the columns of input matrix
+    for (int j=0; j<input.width; j++){
+        for (int i=0; i<input.height; i++){
+            // Append values to output data vector
+            output_data.push_back(input.data[i*input.width + j]);
+        }
+    }
 
-
-
-
-
-
+    // Initialize the output matrix and return it
+    matrix output_matrix(output_data, output_height, output_width);
+    return output_matrix;
+}
 
 
 #endif /* LALG_H */

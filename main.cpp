@@ -38,15 +38,16 @@ int main(void)
 
 
     // Matrix Initializations
-    matrix m(data,height,width);
-    matrix m1(data2,height2,width2);
-    matrix m2(data3,height3,width3);
+    matrix m1( data, height, width);
+    matrix m2( data2, height2, width2);
+    matrix m3( data3, height3, width3);
     // matrix prod;
 
 
     // Header Demonstration
+    // Matrix Multiplication
     try{
-        matrix prod = matrix_multiply(m1,m2);
+        matrix prod = matrix_multiply(m2,m3);
 
         for (int i=0; i<prod.height; i++){
             for (int j=0; j<prod.width; j++)
@@ -58,6 +59,22 @@ int main(void)
         std::cout << e << std::endl;
     }
 
+    // Matrix Transposition
+    for (int i=0; i<m1.height; i++){
+        for (int j=0; j<m1.width; j++)
+            std::cout << m1.data[i*m1.width+j] << " ";
+        std::cout << std::endl;
+    }
+        std::cout << m1.height << " " << m1.width << std::endl;
+
+    matrix m1t = matrix_transpose(m1);
+
+    for (int i=0; i<m1t.height; i++){
+        for (int j=0; j<m1t.width; j++)
+            std::cout << m1t.data[i*m1t.width+j] << " ";
+        std::cout << std::endl;
+    }
+        std::cout << m1t.height << " " << m1t.width << std::endl;
 
 
 
