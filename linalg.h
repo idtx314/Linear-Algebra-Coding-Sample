@@ -23,7 +23,7 @@ struct matrix {
 
 
     public:
-        matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
+        inline matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
 
             // Sanity check input
             if (input_data.size() != input_height*input_width){
@@ -36,13 +36,13 @@ struct matrix {
         }
 
 
-        std::vector<double> data() const{
+        inline std::vector<double> data() const{
             return _data;
         }
-        int height() const{
+        inline int height() const{
             return _height;
         }
-        int width() const{
+        inline int width() const{
             return _width;
         }
 
