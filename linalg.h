@@ -16,21 +16,37 @@ Instructions and license go in here
 
 // Global Variables
 struct matrix {
-    std::vector<double> data;
-    int height;
-    int width;
+    private:
+        std::vector<double> _data;
+        int _height;
+        int _width;
 
-    matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
 
-        // Sanity check input
-        if (input_data.size() != input_height*input_width){
-            throw std::string("Vector size does not match given matrix dimensions. Object will be invalid");
+    public:
+        matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
+
+            // Sanity check input
+            if (input_data.size() != input_height*input_width){
+                throw std::string("Vector size does not match given matrix dimensions. Object will be invalid");
+            }
+
+            _data   = input_data;
+            _height = input_height;
+            _width  = input_width;
         }
 
-        data   = input_data;
-        height = input_height;
-        width  = input_width;
-    }
+
+        std::vector<double> data() const{
+            return _data;
+        }
+        int height() const{
+            return _height;
+        }
+        int width() const{
+            return _width;
+        }
+
+
 };
 
 
@@ -41,12 +57,12 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
     // This function performs matrix multiplication of the first input by the second input.
 
     // Initialize Variables
-    int output_height = multiplicand.height;
-    int output_width  = multiplier.width;
+    int output_height = multiplicand.height();
+    int output_width  = multiplier.width();
     std::vector<double> output_data;
 
     // Sanity check input matrix dimensions
-    if (multiplicand.width != multiplier.height){
+    if (multiplicand.width() != multiplier.height()){
         throw std::string("Width of input matrix 1 does not match height of input matrix 2. Multiplication is not defined!");
     }
 
@@ -55,8 +71,8 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
     for (int i=0; i<output_height; i++){
         for (int j=0; j<output_width; j++){
             // Calculate the result of matrix multiplication
-            for (int k=0; k<multiplier.height; k++){
-                sum = sum + multiplicand.data[i*multiplicand.width+k]*multiplier.data[k*multiplier.width+j];
+            for (int k=0; k<multiplier.height(); k++){
+                sum = sum + multiplicand.data()[i*multiplicand.width()+k]*multiplier.data()[k*multiplier.width()+j];
             }
             // Then append the result to the output data vector.
             output_data.push_back(sum);
@@ -75,15 +91,15 @@ inline matrix matrix_transpose(matrix input){
     // This function takes the transpose of the input matrix and returns it as a new matrix. The input matrix is unchanged.
 
     // Initialize variables
-    int output_height = input.width;
-    int output_width = input.height;
+    int output_height = input.width();
+    int output_width = input.height();
     std::vector<double> output_data;
 
     // Iterate down the columns of input matrix
-    for (int j=0; j<input.width; j++){
-        for (int i=0; i<input.height; i++){
+    for (int j=0; j<input.width(); j++){
+        for (int i=0; i<input.height(); i++){
             // Append values to output data vector
-            output_data.push_back(input.data[i*input.width + j]);
+            output_data.push_back(input.data()[i*input.width() + j]);
         }
     }
 

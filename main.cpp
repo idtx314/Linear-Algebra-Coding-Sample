@@ -35,32 +35,32 @@ int main(void)
     try{
         matrix prod = matrix_multiply(m2,m3);
 
-        for (int i=0; i<prod.height; i++){
-            for (int j=0; j<prod.width; j++)
-                std::cout << prod.data[i*prod.width+j] << " ";
+        for (int i=0; i<prod.height(); i++){
+            for (int j=0; j<prod.width(); j++)
+                std::cout << prod.data()[i*prod.width()+j] << " ";
             std::cout << std::endl;
         }
-        std::cout << prod.height << " " << prod.width << std::endl;
+        std::cout << prod.height() << " " << prod.width() << std::endl;
     } catch (std::string e){
         std::cout << e << std::endl;
     }
 
     // Matrix Transposition
-    for (int i=0; i<m1.height; i++){
-        for (int j=0; j<m1.width; j++)
-            std::cout << m1.data[i*m1.width+j] << " ";
+    for (int i=0; i<m1.height(); i++){
+        for (int j=0; j<m1.width(); j++)
+            std::cout << m1.data()[i*m1.width()+j] << " ";
         std::cout << std::endl;
     }
-        std::cout << m1.height << " " << m1.width << std::endl;
+        std::cout << m1.height() << " " << m1.width() << std::endl;
 
     matrix m1t = matrix_transpose(m1);
 
-    for (int i=0; i<m1t.height; i++){
-        for (int j=0; j<m1t.width; j++)
-            std::cout << m1t.data[i*m1t.width+j] << " ";
+    for (int i=0; i<m1t.height(); i++){
+        for (int j=0; j<m1t.width(); j++)
+            std::cout << m1t.data()[i*m1t.width()+j] << " ";
         std::cout << std::endl;
     }
-        std::cout << m1t.height << " " << m1t.width << std::endl;
+        std::cout << m1t.height() << " " << m1t.width() << std::endl;
 
 
 
