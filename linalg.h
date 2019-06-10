@@ -21,6 +21,12 @@ struct matrix {
     int width;
 
     matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
+
+        // Sanity check input
+        if (input_data.size() != input_height*input_width){
+            throw std::string("Vector size does not match given matrix dimensions. Object will be invalid");
+        }
+
         data   = input_data;
         height = input_height;
         width  = input_width;
