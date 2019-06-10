@@ -75,8 +75,9 @@ int main(void){
 
 void matrix_print(matrix input_matrix){
     // This function prints the data of a matrix to the standard output
-    for (int i=0; i<input_matrix.height(); i++){
-        for (int j=0; j<input_matrix.width(); j++)
+    int i, j;
+    for (i=0; i<input_matrix.height(); i++){
+        for (j=0; j<input_matrix.width(); j++)
             std::cout << std::setw(5) << input_matrix.data()[i*input_matrix.width()+j];
         std::cout << std::endl;
     }

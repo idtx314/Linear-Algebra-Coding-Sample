@@ -77,11 +77,12 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
     }
 
     double sum = 0;
+    int i, j, k;
     // Iterate across the rows of the output matrix
-    for (int i=0; i<output_height; i++){
-        for (int j=0; j<output_width; j++){
+    for (i=0; i<output_height; i++){
+        for (j=0; j<output_width; j++){
             // Calculate the result of matrix multiplication
-            for (int k=0; k<multiplier.height(); k++){
+            for (k=0; k<multiplier.height(); k++){
                 sum = sum + multiplicand.data()[i*multiplicand.width()+k]*multiplier.data()[k*multiplier.width()+j];
             }
             // Then append the result to the output data vector.
@@ -110,8 +111,9 @@ inline matrix matrix_transpose(matrix input){
     std::vector<double> output_data;
 
     // Iterate down the columns of the input matrix
-    for (int j=0; j<input.width(); j++){
-        for (int i=0; i<input.height(); i++){
+    int i, j;
+    for (j=0; j<input.width(); j++){
+        for (i=0; i<input.height(); i++){
             // Append the values to the output data vector
             output_data.push_back(input.data()[i*input.width() + j]);
         }
