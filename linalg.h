@@ -20,11 +20,10 @@ struct matrix {
     int height;
     int width;
 
-    matrix(double* input_data = NULL, int input_height=0, int input_width=0){
+    matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
+        data   = input_data;
         height = input_height;
         width  = input_width;
-        for (int i=0; i<(width*height); i++)
-            data.push_back(input_data[i]);
     }
 };
 
@@ -35,10 +34,10 @@ struct matrix {
 inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
     // This function performs matrix multiplication of the first input by the second input.
 
-    // Initialize variables
+    // Initialize Variables
     int output_height = multiplicand.height;
     int output_width  = multiplier.width;
-    double output_data[output_height * output_width];
+    std::vector<double> output_data;
 
     // Sanity check input matrix dimensions
     if (multiplicand.width != multiplier.height){
@@ -51,10 +50,10 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
         for (int j=0; j<output_width; j++){
             // Calculate the result of matrix multiplication
             for (int k=0; k<multiplier.height; k++){
-                sum = sum + multiplicand.data[i*multiplicand.width + k]*multiplier.data[k*multiplier.width+j];
+                sum = sum + multiplicand.data[i*multiplicand.width+k]*multiplier.data[k*multiplier.width+j];
             }
             // Then append the result to the output data vector.
-            output_data[i*output_height + j] = sum;
+            output_data.push_back(sum);
             sum = 0;
         }
     }
@@ -72,13 +71,13 @@ inline matrix matrix_transpose(matrix input){
     // Initialize variables
     int output_height = input.width;
     int output_width = input.height;
-    double output_data[output_height*output_width];
+    std::vector<double> output_data;
 
     // Iterate down the columns of input matrix
     for (int j=0; j<input.width; j++){
         for (int i=0; i<input.height; i++){
             // Append values to output data vector
-            output_data[i + j*output_height] = input.data[i*input.width + j];
+            output_data.push_back(input.data[i*input.width + j]);
         }
     }
 
