@@ -93,10 +93,10 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
     // Initialize the output matrix and return it
     try{
         matrix output_matrix(output_data, output_height, output_width);
+        return output_matrix;
     } catch (std::string e){
         throw e;
     }
-    return output_matrix;
 }
 
 
@@ -120,10 +120,10 @@ inline matrix matrix_transpose(matrix input){
     // Initialize the output matrix and return it
     try{
         matrix output_matrix(output_data, output_height, output_width);
+        return output_matrix;
     } catch (std::string e){
         throw e;
     }
-    return output_matrix;
 }
 
 
