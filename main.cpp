@@ -38,9 +38,9 @@ int main(void)
 
 
     // Matrix Initializations
-    matrix m1( data, height, width);
-    matrix m2( data2, height2, width2);
-    matrix m3( data3, height3, width3);
+    matrix m1(initlist, height, width);
+    matrix m2(initlist2, height2, width2);
+    matrix m3(initlist3, height3, width3);
     // matrix prod;
 
 
