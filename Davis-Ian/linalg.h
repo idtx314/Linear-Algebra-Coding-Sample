@@ -3,7 +3,7 @@ Usage
     This library defines several functions that perform matrix operations and a struct for accessing them.
     When initializing a new struct, use a vector from the C++ standard libraries to input the contents of your matrix. The vector should contain all values from the rows of the matrix reading from left to right and top to bottom. Usage examples are provided in the file "main_example.cpp" included in the library zip file.
     This library will sanity check input and throw exceptions as a string from the c++ standard libraries. Handling these exceptions gracefully is left to the user.
-    Data in the struct should be modified only through the Constructor function and accessed using the member functions data(), height(), and width().
+    Member variables in the struct should be modified only through the Constructor function and accessed using the member functions values(), height(), and width().
 
 Compilation
     This library requires the usage of the C++11 standard or later when compiling. To compile with g++ or MinGW:
@@ -28,30 +28,30 @@ Compilation
 struct matrix {
     private:
         // Member variables cannot be modified directly
-        std::vector<double> _data;
+        std::vector<double> _values;
         int _height;
         int _width;
 
 
     public:
-        inline matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
+        inline matrix(std::vector<double> input_values = std::vector<double>(), int input_height=0, int input_width=0){
             // This function initializes the member variables. An empty matrix is created by default.
 
             // Sanity check input
-            if (input_data.size() != input_height*input_width){
+            if (input_values.size() != input_height*input_width){
                 throw std::string("Vector size does not match given matrix dimensions. Object will be invalid");
             }
 
             // Set member variables
-            _data   = input_data;
+            _values   = input_values;
             _height = input_height;
             _width  = input_width;
         }
 
 
         // These functions should be used to retrieve information about the matrix
-        inline std::vector<double> data() const{
-            return _data;
+        inline std::vector<double> values() const{
+            return _values;
         }
         inline int height() const{
             return _height;
@@ -83,7 +83,7 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
         for (j=0; j<output_width; j++){
             // Calculate the result of matrix multiplication
             for (k=0; k<multiplier.height(); k++){
-                sum = sum + multiplicand.data()[i*multiplicand.width()+k]*multiplier.data()[k*multiplier.width()+j];
+                sum = sum + multiplicand.values()[i*multiplicand.width()+k]*multiplier.values()[k*multiplier.width()+j];
             }
             // Then append the result to the output data vector.
             output_data.push_back(sum);
@@ -115,7 +115,7 @@ inline matrix matrix_transpose(matrix input){
     for (j=0; j<input.width(); j++){
         for (i=0; i<input.height(); i++){
             // Append the values to the output data vector
-            output_data.push_back(input.data()[i*input.width() + j]);
+            output_data.push_back(input.values()[i*input.width() + j]);
         }
     }
 

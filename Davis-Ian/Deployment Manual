@@ -1,32 +1,124 @@
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Copyright and Licensing
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+<This section intentionally left blank>
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 This manual explains the usage of the C++ library "linalg.h"
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Library's purpose and brief blurb
-
-
-
-
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Including The Library
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-These instructions will use the GNU Compiler Collection as an example, but the library should be compatible with any compiler that can apply the c++11 standard.
-Should include instructions for linux, windows, and mac. For anything more esoteric they're on their own.
-
-Instructions to:
-Install a compiler
-Include the Library
-Compile with the library
-
+This package contains source code for the linalg library, a C++ static library that performs linear algebra operations.
+The library conforms to the C++11 standard and is designed to be lightweight, portable, and easy to use.
+These instructions will make deploying the library in your work as smooth as possible. You are presumed to have some basic understanding of the command line interface on your machine and how to write and compile programs.
 
 
 
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Library Usage Instructions
+Installing a Compiler
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Include:
-List of Library Functions and objects
-    Their descriptions
-    How to use them
+The library can be compiled using any compiler that supports the C++11 standard. These instructions will assume that you are using the g++ compiler from the GNU Compiler Collection, which is available and widely used on all major operating systems. If you have your own compiler that supports the standard, you are welcome to use that instead.
+
+
+Validate Installation
+    There is a good chance that your computer already has g++ installed as a dependency for some other program. You can check this by opening your command line interface and entering the following command:
+        'g++ --version'
+
+    When the command is entered and g++ is installed, a version number and copyright notice will display in the command line interface.
+    If g++ is installed already, you can skip to the Including and Compiling section. If g++ is not installed, proceed through the installation instructions for your operating system.
+
+Install g++ on Linux (Ubuntu)
+    You will need to have access to root privileges via the sudo command in order to install the g++ package. These installation instructions should also work on any version of Linux that uses apt, such as Debian. To install on other distributions, you will need to use the appropriate package manager for that distribution.
+
+    1. Open the command line interface and enter the command
+        'sudo apt install g++'
+
+    2. Use the command 'g++ --version' to validate installation, as described above.
+
+Install g++ on Windows
+    1. Go to http://www.mingw.org/wiki/Getting_Started and follow the directions to begin installing mingw-get, the mingw installation manager. Depending on your security settings you may need admin permissions to run the installer.
+
+    2. When offered the option, install the GUI. It will make selecting the appropriate packages much easier.
+
+    3. Once in the package selection GUI, be sure that the g++ package and its dependencies are marked for installation before applying the changes.
+
+    4. Refer to the instructions in the "After Installing You Should ..." and "Environment Settings" sections to ensure that your command interface will be able to find g++. Be especially careful if you didn't use the default installation directory.
+
+    5. Validate that you have installed g++ correctly by navigating your command line interface to the directory where you installed MinGW, then into the "bin" directory. By default this is "C:\MinGW\bin". Enter the command 'g++ --version' here and you should see a version number and copyright notice.
+
+    6. Validate that you have set up the operating environment properly by opening a new command line interface (through msys.bat, if you chose not to modify your user PATH variable in step 4) and entering the command 'g++ --version'. If the command prompt displays a version number and copyright notice then g++ is installed correctly.
+
+
+Install g++ on Macintosh
+    Note that these instructions are actually installing the clang C++ compiler. At the time of writing, Apple no longer offers an official g++ distribution, but g++ commands will be remapped to clang++, which is a suitable substitute.
+
+    1. Open a terminal window and enter the command:
+        'g++'
+
+    2. A prompt window should appear saying that the command line developer tools are required. Click "Install" to proceed with installing the tools.
+
+    3. Use the command 'g++ --version' to validate installation, as described above, or enter the command 'g++' again and you should receive an error from clang indicating that there were no input files specified.
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Including And Compiling With The Library
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+The library can be compiled using any compiler that supports the C++11 standard. These instructions will assume that you are using the g++ compiler from the GNU Compiler Collection, which is available and widely used on all major operating systems. If you have your own compiler that supports the standard, you are welcome to use that instead.
+
+    1. In the #include section of the source code where you want to use the library add these lines:
+        #include<string>
+        #include<vector>
+        #include"linalg.h"
+
+    2. Place the library file linalg.h in the same directory as the source code file you intend to compile it with.
+
+    3. Open a command line interface and navigate to the directory containing the source code and library.
+
+    4. Enter this command, replacing "<source.cpp>" with the name of your source code file and "<output>" with the name you want your executable file to have:
+        'g++ <source.cpp> -std=c++11 -o <output>'
+
+    5. A file with the name you substituted for <output> will appear in your working directory. This is your compiled executable.
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Library Contents and Usage
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+struct matrix
+    The center of the library, this struct represents all the information for a given m by n matrix in a portable package. Most functions use the struct for input and output.
+
+    Creating A matrix
+        To initialize a new matrix, use this syntax:
+            matrix my_matrix(values_vector, height, width)
+
+        This creates a new matrix variable called "my_matrix" using "values_vector", "height", and "width" as input variables.
+
+        The variable "values_vector" should be a std::vector of type double, filled with the values of the matrix. When filling the vector with values, the matrix should be read from left to right, and top to bottom as shown in the conversion below:
+
+        |1  2  3|
+        |4  5  6|  -->  std::vector<double> values_vector{1,2,3,4,5,6,7,8,9}
+        |7  8  9|
+
+        The variables "height" and "width" should be int variables representing the number of rows and columns in the matrix, respectively.
+
+        The length of "values_vector" will be checked during initialization to make sure it matches the matrix dimensions specified by the "height" and "width" variables. In the event of a mismatch, a string error will be thrown and a matrix will not be created. To prevent this safety from being circumvented accidentally, the member variables of a matrix struct cannot be modified except during initialization or by calling the initialization member function.
+
+    Extracting Data From A matrix
+
+
+
+
+
+Matrix operations are provided as functions which return a new matrix object as their result. This means that once initialized a matrix will persist until it either falls out of scope or is explicitly destroyed or overwritten by the programmer.
+
+List of Functions
+    Purpose Descriptions
+    Inputs and Outputs
+
 

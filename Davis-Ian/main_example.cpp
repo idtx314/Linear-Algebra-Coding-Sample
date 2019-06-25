@@ -27,15 +27,15 @@ int main(void){
     int width1 = 5;
     int width2 = 4;
     int width3 = 3;
-    std::vector<double> data1{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-    std::vector<double> data2{1, 1, 1, 1, 2, 2, 2, 2};
-    std::vector<double> data3{1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3};
+    std::vector<double> values1{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    std::vector<double> values2{1, 1, 1, 1, 2, 2, 2, 2};
+    std::vector<double> values3{1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3};
 
     // Matrix Initializations and Matrix Multiplication will throw std::string exceptions in the event that input fails sanity checking.
     try{
-        matrix m1( data1, height1, width1);
-        matrix m2( data2, height2, width2);
-        matrix m3( data3, height3, width3);
+        matrix m1( values1, height1, width1);
+        matrix m2( values2, height2, width2);
+        matrix m3( values3, height3, width3);
 
 
         // Matrix Multiplication
@@ -74,11 +74,11 @@ int main(void){
 
 
 void matrix_print(matrix input_matrix){
-    // This function prints the data of a matrix to the standard output
+    // This function prints the values of a matrix to the standard output
     int i, j;
     for (i=0; i<input_matrix.height(); i++){
         for (j=0; j<input_matrix.width(); j++)
-            std::cout << std::setw(5) << input_matrix.data()[i*input_matrix.width()+j];
+            std::cout << std::setw(5) << input_matrix.values()[i*input_matrix.width()+j];
         std::cout << std::endl;
     }
     std::cout<< "Rows:" << std::setw(3) << input_matrix.height() << std::endl << "Columns:" << std::setw(3) << input_matrix.width() << std::endl << std::endl;
