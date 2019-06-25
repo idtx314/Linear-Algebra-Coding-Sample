@@ -1,0 +1,32 @@
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+This manual explains the usage of the C++ library "linalg.h"
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Library's purpose and brief blurb
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Including The Library
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+These instructions will use the GNU Compiler Collection as an example, but the library should be compatible with any compiler that can apply the c++11 standard.
+Should include instructions for linux, windows, and mac. For anything more esoteric they're on their own.
+
+Instructions to:
+Install a compiler
+Include the Library
+Compile with the library
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Library Usage Instructions
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Include:
+List of Library Functions and objects
+    Their descriptions
+    How to use them
+
