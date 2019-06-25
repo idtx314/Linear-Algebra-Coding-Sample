@@ -35,7 +35,7 @@ struct matrix {
 
     public:
         inline matrix(std::vector<double> input_data = std::vector<double>(), int input_height=0, int input_width=0){
-            // This function permits the definition of the member variables
+            // This function initializes the member variables. An empty matrix is created by default.
 
             // Sanity check input
             if (input_data.size() != input_height*input_width){
