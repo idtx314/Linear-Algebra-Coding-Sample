@@ -41,9 +41,9 @@ int main(void){
 
     // Matrix Initializations and Matrix Multiplication will throw std::string exceptions in the event that input fails sanity checking.
     try{
-        matrix m1( values1, height1, width1);
-        matrix m2( values2, height2, width2);
-        matrix m3( values3, height3, width3);
+        matrix m1(values1, height1, width1);
+        matrix m2(values2, height2, width2);
+        matrix m3(values3, height3, width3);
 
 
         // Matrix Multiplication
@@ -86,7 +86,7 @@ int unit_tests(){
     // for each error print a message to std out and add to error count
 
     // Initialize variables
-    bool pass = false;
+    bool pass;
     int error_count = 0;
     int height1 = 3;
     int height2 = 2;
@@ -101,18 +101,14 @@ int unit_tests(){
 
     // Test Matrix Initialization
     // Initialize Undersize Matrix
+    pass = false;
     try{
         matrix m1(values3, height2, width2);
-        pass = false;
     }
     catch(std::string e){
-        if(e == "Error: Vector size does not match given matrix dimensions. Aborting variable creation"){
-            pass = true;
-        }
-        else{
-            pass = false;
-        }
+        if(e == "Error: Vector size does not match given matrix dimensions. Aborting variable creation"){pass = true;}
     }
+
     if(pass){
         std::cout << "Unit Test Passed: Initialize Undersize Matrix" << std::endl;
     }
@@ -120,16 +116,54 @@ int unit_tests(){
         std::cout << "Unit Test Failed: Initialize Undersize Matrix" << std::endl;
         error_count += 1;
     }
-    pass = false;
 
     // Initialize Oversize Matrix
+    pass = false;
     try{
         matrix m2(values1, height2, width2);
-        pass = false;
     }
-    // Initialize Null Matrix
-    // Initialize Default Matrix
-    // Initialize matrix properly
+    catch(std::string e){
+        if(e == "Error: Vector size does not match given matrix dimensions. Aborting variable creation"){pass = true;}
+    }
+    if(pass){
+        std::cout << "Unit Test Passed: Initialize Oversize Matrix" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Initialize Oversize Matrix" << std::endl;
+        error_count += 1;
+    }
+
+    // Initialize Null And Empty Matrix
+    pass = false;
+    try{
+        matrix m3(std::vector<double>(),NULL,NULL);
+        matrix m4;
+
+        if (m3.values()==m4.values() && m3.height()==m4.height() && m3.width()==m4.width()){pass = true;}
+    }
+    catch(std::string e){}
+    if(pass){
+        std::cout << "Unit Test Passed: Initialize NULL And Empty Matrix" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Initialize NULL And Empty Matrix" << std::endl;
+        error_count += 1;
+    }
+
+    // Initialize Normal Matrix
+    pass = false;
+    try{
+        matrix m5(values1,height1,width1);
+        if (m5.values()==values1 && m5.height() == height1 && m5.width() == width1){pass = true;}
+    }
+    catch(std::string e){}
+    if(pass){
+        std::cout << "Unit Test Passed: Initialize Normal Matrix" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Initialize Normal Matrix" << std::endl;
+        error_count += 1;
+    }
 
     // Test Matrix Multiplication
         // Test Mismatched Input
