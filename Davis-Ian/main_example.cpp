@@ -20,6 +20,7 @@ Compile from the command line using g++ with the command:
 
 // Prototypes
 void matrix_print(matrix);
+int unit_tests(void);
 
 
 // Demonstrator function
@@ -35,6 +36,8 @@ int main(void){
     std::vector<double> values1{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
     std::vector<double> values2{1, 1, 1, 1, 2, 2, 2, 2};
     std::vector<double> values3{1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3};
+
+    unit_tests();
 
     // Matrix Initializations and Matrix Multiplication will throw std::string exceptions in the event that input fails sanity checking.
     try{
@@ -76,6 +79,66 @@ int main(void){
     }
     return 0;
 }
+
+
+int unit_tests(){
+    // This function performs a series of checks to make sure that the library is working properly.
+    // for each error print a message to std out and add to error count
+
+    // Initialize variables
+    bool pass;
+    int error_count = 0;
+    int height1 = 3;
+    int height2 = 2;
+    int height3 = 4;
+    int width1 = 5;
+    int width2 = 4;
+    int width3 = 3;
+    std::vector<double> values1{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    std::vector<double> values2{1,1,1,1,2,2,2,2};
+    std::vector<double> values3{1,2,3,1,2,3,1,2,3,1,2,3};
+
+
+    // Test Matrix Initialization
+    // Initialize Undersize Matrix
+    try{
+        matrix m1(values3, height2, width2);
+        pass = false;
+    }
+    catch(std::string e){
+        if(e == "Error: Vector size does not match given matrix dimensions. Aborting variable creation"){
+            pass = true;
+        }
+        else{
+            pass = false;
+        }
+    }
+    if(pass){
+        std::cout << "Unit Test Passed: Initialize Undersize Matrix" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Initialize Undersize Matrix" << std::endl;
+        error_count += 1;
+    }
+    pass = false;
+
+    // Initialize Oversize Matrix
+    // Initialize Null Matrix
+    // Initialize Default Matrix
+    // Initialize matrix properly
+
+    // Test Matrix Multiplication
+        // Test Mismatched Input
+        // Test Null Input
+        // Test Normal Input
+
+    // Test Matrix Transposition
+        // Test Normal Input
+
+    // Return Number of Errors
+    return error_count;
+}
+
 
 
 void matrix_print(matrix input_matrix){
