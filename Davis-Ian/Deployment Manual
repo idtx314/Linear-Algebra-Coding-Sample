@@ -131,12 +131,13 @@ matrix_multiply(matrix1, matrix2)
     This function performs matrix multiplication, with matrix1 being multiplied by matrix2.
     Both inputs must be matrix structs. The width of matrix1 must equal the height of matrix2.
     The function will return a matrix struct representing the result of the matrix multiplication.
-    The function will throw a string error if matrix1.width() does not match matrix2.height().
+    The function will throw a string error if matrix1.width() does not match matrix2.height() or if the matrix struct to be returned fails to initialize.
 
 matrix_transpose(matrix1)
     This function takes the transpose of a matrix.
     The input must be a matrix struct.
     The output will be a matrix struct representing the transpose of the input matrix.
+    The function will throw a string error if the matrix struct to be returned fails to initialize.
 
 
 
