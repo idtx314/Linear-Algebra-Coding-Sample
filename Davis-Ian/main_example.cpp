@@ -56,7 +56,7 @@ int main(void){
         linalg::matrix m2(values2, height2, width2);
         linalg::matrix m3(values3, height3, width3);
 
-        // Initialize a Default Matrix
+        // Initialize an Empty Matrix
         linalg::matrix m4;
 
         // Perform Matrix Operations

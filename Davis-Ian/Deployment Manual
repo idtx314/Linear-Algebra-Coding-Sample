@@ -19,43 +19,41 @@ These instructions will make deploying the library in your work as smooth as pos
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Installing a Compiler
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-The library can be compiled using any compiler that supports the C++11 standard. These instructions will assume that you are using the g++ compiler from the GNU Compiler Collection, which is available and widely used on all major operating systems. If you have your own compiler that supports the standard, you are welcome to use that instead.
+The library can be compiled using any compiler that supports the C++11 standard. These instructions will assume that you are using the g++ compiler from the GNU Compiler Collection, which is available and widely used on all major operating systems. If you have your own compiler that supports the standard, you are welcome to use that instead. The rest of this section provides instructions to install g++ on a variety of systems.
 
 
 Validate Installation
-    There is a good chance that your computer already has g++ installed as a dependency for some other program. You can check this by opening your command line interface and entering the following command:
-        'g++ --version'
+    There is a good chance that your computer already has g++ installed as a dependency for some other program. You can check this by opening your command line interface and entering this command:
+        g++ --version
 
-    When the command is entered and g++ is installed, a version number and copyright notice will display in the command line interface.
-    If g++ is installed already, you can skip to the Including and Compiling section. If g++ is not installed, proceed through the installation instructions for your operating system.
+    If g++ is installed, a version number and copyright notice will display in the command line window.
+    If g++ is not installed, proceed through the installation instructions for your operating system.
 
 Install g++ on Linux (Ubuntu)
-    You will need to have access to root privileges via the sudo command in order to install the g++ package. These installation instructions should also work on any version of Linux that uses apt, such as Debian. To install on other distributions, you will need to use the appropriate package manager for that distribution.
+    You will need to have access to root privileges via the sudo command in order to install the g++ package. These instructions should work on any version of Linux that uses apt, such as Debian. To install on other distributions, you will need to use the appropriate package manager.
 
-    1. Open the command line interface and enter the command
-        'sudo apt install g++'
+    1. Open the command line interface and enter this command:
+        sudo apt install g++
 
     2. Use the command 'g++ --version' to validate installation, as described above.
 
 Install g++ on Windows
     1. Go to http://www.mingw.org/wiki/Getting_Started and follow the directions to begin installing mingw-get, the mingw installation manager. Depending on your security settings you may need admin permissions to run the installer.
+        1a. When offered the option, install the GUI. It will make selecting the appropriate packages much easier.
+        1b. Once in the package selection GUI, be sure that the g++ package and its dependencies are marked for installation before applying the changes. At the time of writing, you can find this in the "Basic Setup" package list as "mingw32-gcc-g++-bin".
 
-    2. When offered the option, install the GUI. It will make selecting the appropriate packages much easier.
+    2. Refer to the "After Installing You Should ..." and "Environment Settings" sections in the MinGW instructions to ensure that your command interface will be able to find g++. Be especially careful if you didn't use the default installation directory.
 
-    3. Once in the package selection GUI, be sure that the g++ package and its dependencies are marked for installation before applying the changes. At the time of writing, you can find this in the "Basic Setup" package list as "mingw32-gcc-g++-bin".
+    3. Validate that you have installed g++ correctly by navigating your command line interface to the directory where you installed MinGW, then into the "bin" directory. By default this is "C:\MinGW\bin". Enter the command 'g++ --version' here and you should see a version number and copyright notice.
 
-    4. Refer to the instructions in the "After Installing You Should ..." and "Environment Settings" sections to ensure that your command interface will be able to find g++. Be especially careful if you didn't use the default installation directory.
-
-    5. Validate that you have installed g++ correctly by navigating your command line interface to the directory where you installed MinGW, then into the "bin" directory. By default this is "C:\MinGW\bin". Enter the command 'g++ --version' here and you should see a version number and copyright notice.
-
-    6. Validate that you have set up the operating environment properly by opening a new command line interface (through msys.bat, if you chose not to modify your user PATH variable in step 4) and entering the command 'g++ --version'. If the command prompt displays a version number and copyright notice then g++ is installed correctly.
+    4. Validate that you have set up the operating environment properly by opening a new command line interface (through msys.bat, if you chose not to modify your user PATH variable in step 2) and entering the command 'g++ --version'. If the command prompt displays a version number and copyright notice then g++ is installed correctly.
 
 
 Install g++ on Macintosh
     Note that these instructions are actually installing the clang C++ compiler. At the time of writing, Apple no longer offers an official g++ distribution, but g++ commands will be remapped to clang++, which is a suitable substitute.
 
-    1. Open a terminal window and enter the command:
-        'g++'
+    1. Open a terminal window and enter this command:
+        g++
 
     2. A prompt window should appear saying that the command line developer tools are required. Click "Install" to proceed with installing the tools.
 
@@ -69,17 +67,15 @@ Including And Compiling With The Library
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 The library can be compiled using any compiler that supports the C++11 standard. These instructions will assume that you are using the g++ compiler from the GNU Compiler Collection, which is available and widely used on all major operating systems. If you have your own compiler that supports the standard, you are welcome to use that instead.
 
-    1. In the #include section of the source code where you want to use the library add these lines:
-        #include<string>
-        #include<vector>
+    1. In the #include section of the source code where you want to use the library add this line:
         #include"linalg.h"
 
     2. Place the library file linalg.h in the same directory as the source code file you intend to compile it with.
 
-    3. Open a command line interface and navigate to the directory containing the source code and library.
+    3. Open a command line interface and navigate to the directory containing the source code and library files.
 
     4. Enter this command, replacing "<source.cpp>" with the name of your source code file and "<output>" with the name you want your executable file to have:
-        'g++ <source.cpp> -std=c++11 -o <output>'
+        g++ <source.cpp> -std=c++11 -o <output>
 
     5. A file with the name you substituted for <output> will appear in your working directory. This is your compiled executable.
 
@@ -90,9 +86,10 @@ The library can be compiled using any compiler that supports the C++11 standard.
 Library Contents and Usage
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 General Philosophy
-    The most important item in the library is the struct "matrix". Instances of this struct are used for matrix representation, and library functions make heavy use of the data type for input and output.
-    Linear algebra operations are provided by library functions. These typically accept matrix inputs and return a new matrix as a result. A function will never overwrite an existing matrix struct, so instances of matrix will persist in memory until they either fall out of scope or are explicitly destroyed or overwritten by the program.
-    Operations that have a possibility of failure, such as attempting to multiply two matrices with incompatible dimensions, will result in an error string being thrown. This allows the program to determine how an error should be responded to.
+    All library resources are contained in the namespace "linalg".
+    The most important item in the library is the struct "matrix". Instances of this struct are used for matrix representation, and library functions make heavy use of this data type for input and output.
+    Linear algebra operations are provided by library functions. These typically accept one or more matrix structs as inputs and return a new matrix struct as a result. A function will never overwrite an existing matrix struct, so instances of matrix will persist in memory until they either fall out of scope or are explicitly destroyed or overwritten by the program.
+    Operations that can fail will throw a std::string as an error if they do so. This allows the program to determine how an error should be responded to, if at all.
 
 
 matrix
@@ -104,7 +101,7 @@ matrix
 
         This creates a new matrix variable called "my_matrix" using "values_vector", "height", and "width" as input variables.
 
-        The variable "values_vector" should be a std::vector of type double, filled with the values of the matrix. When filling the vector with values, the matrix should be read from left to right, and top to bottom as shown in the conversion below:
+        The variable "values_vector" should be a std::vector of type double, filled with the values of the matrix. When filling the vector with values, the matrix should be read from left to right, and top to bottom as shown below:
 
         |1  2  3|
         |4  5  6|  ==  std::vector<double> values_vector{1,2,3,4,5,6,7,8,9}
@@ -112,7 +109,7 @@ matrix
 
         The variables "height" and "width" should be int variables representing the number of rows and columns in the matrix, respectively.
 
-        The length of "values_vector" will be checked during initialization to make sure it matches the matrix dimensions specified by the "height" and "width" variables. In the event of a mismatch, a string error will be thrown and a matrix will not be created. To prevent this safety from being circumvented accidentally, the member variables of a matrix struct cannot be modified except during initialization or by calling the initialization member function.
+        The length of "values_vector" will be checked during initialization to make sure it matches the matrix dimensions specified by the "height" and "width" variables. In the event of a mismatch, a string error will be thrown and a matrix will not be created. To prevent this safety from being circumvented, the member variables of a matrix struct cannot be modified except during initialization or by calling the initialization member function.
 
     Extracting Data From A matrix
         In order to retrieve information about a matrix use the member functions.
@@ -124,7 +121,7 @@ matrix
         |7  8  9|
 
         height() returns an int representing the number of rows in the matrix.
-        int() returns an int representing the number of columns in the matrix.
+        width() returns an int representing the number of columns in the matrix.
 
 
 matrix_multiply(matrix1, matrix2)
@@ -134,14 +131,14 @@ matrix_multiply(matrix1, matrix2)
     The function will throw a string error if matrix1.width() does not match matrix2.height() or if the matrix struct to be returned fails to initialize.
 
 matrix_transpose(matrix1)
-    This function takes the transpose of a matrix.
+    This function returns the transpose of a matrix.
     The input must be a matrix struct.
-    The output will be a matrix struct representing the transpose of the input matrix.
+    The output will be a matrix struct representing the transpose of the input.
     The function will throw a string error if the matrix struct to be returned fails to initialize.
 
 unit_tests()
     This function performs tests to validate the library functionality. The results of specific tests are printed to standard out. This function can be used to validate that the library is working in a new environment.
-    The function returns an int equivalent to the number of tests failed.
+    The function returns an int representing the number of tests failed.
 
 
 
