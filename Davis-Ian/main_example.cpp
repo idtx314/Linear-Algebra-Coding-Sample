@@ -91,12 +91,15 @@ int unit_tests(){
     int height1 = 3;
     int height2 = 2;
     int height3 = 4;
+    int height_2x3 = 2;
     int width1 = 5;
     int width2 = 4;
     int width3 = 3;
+    int width_2x3 = 3;
     std::vector<double> values1{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
     std::vector<double> values2{1,1,1,1,2,2,2,2};
     std::vector<double> values3{1,2,3,1,2,3,1,2,3,1,2,3};
+    std::vector<double> values_2x3{4,8,12,8,16,24}
 
 
     // Test Matrix Initialization
@@ -166,9 +169,57 @@ int unit_tests(){
     }
 
     // Test Matrix Multiplication
-        // Test Mismatched Input
-        // Test Null Input
-        // Test Normal Input
+    // Test Mismatched Input
+    pass = false;
+    try{
+        matrix m6(values1, height1, width1);
+        matrix m7(values2, height2, width2);
+        m8 = matrix_multiply(m6,m7);
+    }
+    catch(std::string e){
+        if(e == "Error: Width of input matrix 1 does not match height of input matrix 2. Multiplication is not defined!"){pass = true;}
+    }
+    if(pass){
+        std::cout << "Unit Test Passed: Multiply Mismatched Input" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Multiply Mismatched Input" << std::endl;
+        error_count += 1;
+    }
+
+    // Test Null Input
+    pass = false;
+    try{
+        matrix m9(std::vector<double>, NULL, NULL);
+        matrix m10(std::vector<double>, NULL, NULL);
+        m11 = matrix_multiply(m9,m10);
+        if(mll.values = std::vector<double>() && m11.height() == m11.width() == 0){pass = true;}
+    }
+    catch(std::string e){}
+    if(pass){
+        std::cout << "Unit Test Passed: Multiply NULL Input" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Multiply NULL Input" << std::endl;
+        error_count += 1;
+    }
+
+    // Test Valid Input
+    pass = false;
+    try{
+        matrix m12(values2, height2, width2);
+        matrix m13(values3, height3, width3);
+        m14 = matrix_multiply(m12,m13);
+        if(m14.values == values_2x3 && m14.height() == height_2x3 && m14.width() == width_2x3){pass = true;}
+    }
+    catch(std::string e){}
+    if(pass){
+        std::cout << "Unit Test Passed: Multiply Valid Input" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Multiply Valid Input" << std::endl;
+        error_count += 1;
+    }
 
     // Test Matrix Transposition
         // Test Normal Input
