@@ -89,9 +89,14 @@ The library can be compiled using any compiler that supports the C++11 standard.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Library Contents and Usage
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+General Philosophy
+    The most important item in the library is the struct "matrix". Instances of this struct are used for matrix representation, and library functions make heavy use of the data type for input and output.
+    Linear algebra operations are provided by library functions. These typically accept matrix inputs and return a new matrix as a result. A function will never overwrite an existing matrix struct, so instances of matrix will persist in memory until they either fall out of scope or are explicitly destroyed or overwritten by the program.
+    Operations that have a possibility of failure, such as attempting to multiply two matrices with incompatible dimensions, will result in an error string being thrown. This allows the program to determine how an error should be responded to.
 
-struct matrix
-    The center of the library, this struct represents all the information for a given m by n matrix in a portable package. Most functions use the struct for input and output.
+
+matrix
+    The struct "matrix" represents all the information for a given m by n matrix in a portable package.
 
     Creating A matrix
         To initialize a new matrix, use this syntax:
@@ -102,7 +107,7 @@ struct matrix
         The variable "values_vector" should be a std::vector of type double, filled with the values of the matrix. When filling the vector with values, the matrix should be read from left to right, and top to bottom as shown in the conversion below:
 
         |1  2  3|
-        |4  5  6|  -->  std::vector<double> values_vector{1,2,3,4,5,6,7,8,9}
+        |4  5  6|  ==  std::vector<double> values_vector{1,2,3,4,5,6,7,8,9}
         |7  8  9|
 
         The variables "height" and "width" should be int variables representing the number of rows and columns in the matrix, respectively.
@@ -110,15 +115,30 @@ struct matrix
         The length of "values_vector" will be checked during initialization to make sure it matches the matrix dimensions specified by the "height" and "width" variables. In the event of a mismatch, a string error will be thrown and a matrix will not be created. To prevent this safety from being circumvented accidentally, the member variables of a matrix struct cannot be modified except during initialization or by calling the initialization member function.
 
     Extracting Data From A matrix
+        In order to retrieve information about a matrix use the member functions.
+
+        values() returns a std::vector of type double containing the values of the matrix. The order of the values corresponds to the matrix being read from left to right and top to bottom, as pictured below.
+
+        |1  2  3|
+        |4  5  6|  ==  std::vector<double> values_vector{1,2,3,4,5,6,7,8,9}
+        |7  8  9|
+
+        height() returns an int representing the number of rows in the matrix.
+        int() returns an int representing the number of columns in the matrix.
+
+
+matrix_multiply(matrix1, matrix2)
+    This function performs matrix multiplication, with matrix1 being multiplied by matrix2.
+    Both inputs must be matrix structs. The width of matrix1 must equal the height of matrix2.
+    The function will return a matrix struct representing the result of the matrix multiplication.
+    The function will throw a string error if matrix1.width() does not match matrix2.height().
+
+matrix_transpose(matrix1)
+    This function takes the transpose of a matrix.
+    The input must be a matrix struct.
+    The output will be a matrix struct representing the transpose of the input matrix.
 
 
 
-
-
-Matrix operations are provided as functions which return a new matrix object as their result. This means that once initialized a matrix will persist until it either falls out of scope or is explicitly destroyed or overwritten by the programmer.
-
-List of Functions
-    Purpose Descriptions
-    Inputs and Outputs
 
 

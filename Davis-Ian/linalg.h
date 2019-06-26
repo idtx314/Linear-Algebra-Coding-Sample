@@ -1,4 +1,9 @@
 /*
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Copyright and Licensing
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+<This section intentionally left blank>
+
 Usage
     This library defines several functions that perform matrix operations and a struct for accessing them.
     When initializing a new struct, use a vector from the C++ standard libraries to input the contents of your matrix. The vector should contain all values from the rows of the matrix reading from left to right and top to bottom. Usage examples are provided in the file "main_example.cpp" included in the library zip file.

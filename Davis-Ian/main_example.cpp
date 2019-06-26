@@ -1,4 +1,9 @@
 /*
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Copyright and Licensing
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+<This section intentionally left blank>
+
 This program demonstrates the usage of the linalg.h library.
 
 Compile from the command line using g++ with the command:
