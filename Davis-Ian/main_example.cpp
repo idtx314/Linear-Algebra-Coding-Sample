@@ -24,7 +24,7 @@ For more detailed instructions, refer to the Deployment Manual.
 
 
 // Prototypes
-void matrix_print(matrix);
+void matrix_print(linalg::matrix);
 
 
 // Demonstrator Function
@@ -44,7 +44,7 @@ int main(void){
 
 
     // Run Unit Tests and Print Error Count
-    unit_test_error_count = unit_tests();
+    unit_test_error_count = linalg::unit_tests();
     std::cout << "Unit Test Errors: " << unit_test_error_count << std::endl;
 
 
@@ -52,16 +52,16 @@ int main(void){
     // The application programmer is expected to handle these.
     try{
         // Initialize Some Matrices
-        matrix m1(values1, height1, width1);
-        matrix m2(values2, height2, width2);
-        matrix m3(values3, height3, width3);
+        linalg::matrix m1(values1, height1, width1);
+        linalg::matrix m2(values2, height2, width2);
+        linalg::matrix m3(values3, height3, width3);
 
         // Initialize a Default Matrix
-        matrix m4;
+        linalg::matrix m4;
 
         // Perform Matrix Operations
-        matrix prod = matrix_multiply(m2,m3);
-        matrix m1t = matrix_transpose(m1);
+        linalg::matrix prod = linalg::matrix_multiply(m2,m3);
+        linalg::matrix m1t = linalg::matrix_transpose(m1);
 
 
         // Print Input and Results
@@ -93,7 +93,7 @@ int main(void){
 
 
 // This function prints the properties of a matrix to the standard output
-void matrix_print(matrix input_matrix){
+void matrix_print(linalg::matrix input_matrix){
 
     // Variable Initialization
     int i, j;
