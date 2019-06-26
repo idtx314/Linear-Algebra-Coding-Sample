@@ -4,17 +4,18 @@ Copyright and Licensing
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 <This section intentionally left blank>
 
-Usage
-    This library defines several functions that perform matrix operations and a struct for accessing them.
-    When initializing a new struct, use a vector from the C++ standard libraries to input the contents of your matrix. The vector should contain all values from the rows of the matrix reading from left to right and top to bottom. Usage examples are provided in the file "main_example.cpp" included in the library zip file.
-    This library will sanity check input and throw exceptions as a string from the c++ standard libraries. Handling these exceptions gracefully is left to the user.
-    Member variables in the struct should be modified only through the Constructor function and accessed using the member functions values(), height(), and width().
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Introduction
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+This library defines the struct "matrix" and several functions that perform matrix operations.
+Struct member variables can be changed only during initialization or when calling the initialization function. The values of these variables can be accessed using the member functions values(), height(), and width().
+This library will sanity check input and throw exceptions as a std::string. Handling these exceptions gracefully is left to the application programmer.
+For detailed instructions on library usage, refer to the Deployment Manual.
 
-Compilation
-    This library requires the usage of the C++11 standard or later when compiling. To compile with g++ or MinGW:
-        1. Place "linalg.h" in a directory on the default path or in the same directory as the source code in which it is being included.
-        2. Navigate a command line interface to the source directory and compile using the flag `-std=c++11`. For example:
-        `$ g++ main.cpp -std=c++11`
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Requirements
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+This library requires the usage of the C++11 standard when compiling.
 */
 
 
@@ -32,7 +33,6 @@ Compilation
 // Global Variables
 struct matrix {
     private:
-        // Member variables cannot be modified directly
         std::vector<double> _values;
         int _height;
         int _width;
@@ -72,7 +72,6 @@ struct matrix {
 // This function performs matrix multiplication of the first input by the second input.
 inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
 
-
     // Initialize Variables
     int output_height = multiplicand.height();
     int output_width  = multiplier.width();
@@ -94,7 +93,7 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
                 sum = sum + multiplicand.values()[i*multiplicand.width()+k]*multiplier.values()[k*multiplier.width()+j];
             }
 
-            // Then append the result to the output data vector.
+            // Append the result to the output data vector.
             output_data.push_back(sum);
             sum = 0;
         }
@@ -111,8 +110,7 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
 }
 
 
-
-// This function takes the transpose of the input matrix and returns it as a new matrix. The input matrix is unchanged.
+// This function takes the transpose of the input matrix and returns it as a new matrix.
 inline matrix matrix_transpose(matrix input){
 
     // Initialize variables
@@ -124,6 +122,7 @@ inline matrix matrix_transpose(matrix input){
     // Iterate down the columns of the input matrix
     for (j=0; j<input.width(); j++){
         for (i=0; i<input.height(); i++){
+
             // Append the values to the output data vector
             output_data.push_back(input.values()[i*input.width() + j]);
         }
@@ -212,7 +211,7 @@ inline int unit_tests(){
         error_count += 1;
     }
 
-    // Initialize Normal Matrix
+    // Initialize Valid Matrix
     pass = false;
     try{
         matrix m5(values1,height1,width1);
@@ -220,15 +219,15 @@ inline int unit_tests(){
     }
     catch(std::string e){}
     if(pass){
-        std::cout << "Unit Test Passed: Initialize Normal Matrix" << std::endl;
+        std::cout << "Unit Test Passed: Initialize Valid Matrix" << std::endl;
     }
     else{
-        std::cout << "Unit Test Failed: Initialize Normal Matrix" << std::endl;
+        std::cout << "Unit Test Failed: Initialize Valid Matrix" << std::endl;
         error_count += 1;
     }
 
     // Test Matrix Multiplication
-    // Test Mismatched Input
+    // Test Mismatched Dimension Input
     pass = false;
     try{
         matrix m6(values1, height1, width1);
@@ -239,10 +238,10 @@ inline int unit_tests(){
         if(e == "Error: Width of input matrix 1 does not match height of input matrix 2. Multiplication is not defined!"){pass = true;}
     }
     if(pass){
-        std::cout << "Unit Test Passed: Multiply Mismatched Input" << std::endl;
+        std::cout << "Unit Test Passed: Multiply Mismatched Dimension Input" << std::endl;
     }
     else{
-        std::cout << "Unit Test Failed: Multiply Mismatched Input" << std::endl;
+        std::cout << "Unit Test Failed: Multiply Mismatched Dimesnion Input" << std::endl;
         error_count += 1;
     }
 

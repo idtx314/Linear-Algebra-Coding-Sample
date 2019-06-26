@@ -4,10 +4,15 @@ Copyright and Licensing
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 <This section intentionally left blank>
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Introduction
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 This program demonstrates the usage of the linalg.h library.
 
-Compile from the command line using g++ with the command:
-    `$ g++ main_example.cpp -std=c++11`
+To compile with g++, place this source file and the linalg.h source file in the same directory, navigate to that directory with a command line interface, and enter the command:
+    g++ main_example.cpp -std=c++11
+
+For more detailed instructions, refer to the Deployment Manual.
 */
 
 // Includes
@@ -20,13 +25,12 @@ Compile from the command line using g++ with the command:
 
 // Prototypes
 void matrix_print(matrix);
-int unit_tests(void);
 
 
-// Demonstrator function
+// Demonstrator Function
 int main(void){
 
-    // Matrix Data
+    // Variable Initializations
     int height1 = 3;
     int height2 = 2;
     int height3 = 4;
@@ -38,20 +42,25 @@ int main(void){
     std::vector<double> values2{1, 1, 1, 1, 2, 2, 2, 2};
     std::vector<double> values3{1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3};
 
+
+    // Run Unit Tests and Print Error Count
     unit_test_error_count = unit_tests();
     std::cout << "Unit Test Errors: " << unit_test_error_count << std::endl;
 
-    // Matrix Initializations and Matrix Multiplication will throw std::string exceptions in the event that input fails sanity checking.
+
+    // Matrix initialization and matrix operations will throw std::string exceptions in the event of an error.
+    // The application programmer is expected to handle these.
     try{
+        // Initialize Some Matrices
         matrix m1(values1, height1, width1);
         matrix m2(values2, height2, width2);
         matrix m3(values3, height3, width3);
 
+        // Initialize a Default Matrix
+        matrix m4;
 
-        // Matrix Multiplication
+        // Perform Matrix Operations
         matrix prod = matrix_multiply(m2,m3);
-
-        // Matrix Transposition
         matrix m1t = matrix_transpose(m1);
 
 
@@ -74,22 +83,31 @@ int main(void){
         matrix_print(m1t);
 
     }
-    // Complete error handling
     catch (std::string e){
         std::cout << e << std::endl;
         return 1;
     }
+
     return 0;
 }
 
 
+// This function prints the properties of a matrix to the standard output
 void matrix_print(matrix input_matrix){
-    // This function prints the values of a matrix to the standard output
+
+    // Variable Initialization
     int i, j;
+
+    // Iterate Through the Input Matrix
     for (i=0; i<input_matrix.height(); i++){
         for (j=0; j<input_matrix.width(); j++)
+
+            // Print Values
             std::cout << std::setw(5) << input_matrix.values()[i*input_matrix.width()+j];
+
         std::cout << std::endl;
     }
+
+    // Print Height and Width
     std::cout<< "Rows:" << std::setw(3) << input_matrix.height() << std::endl << "Columns:" << std::setw(3) << input_matrix.width() << std::endl << std::endl;
 }
