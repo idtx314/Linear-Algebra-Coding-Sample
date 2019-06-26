@@ -86,7 +86,7 @@ int unit_tests(){
     // for each error print a message to std out and add to error count
 
     // Initialize variables
-    bool pass;
+    bool pass = false;
     int error_count = 0;
     int height1 = 3;
     int height2 = 2;
@@ -123,6 +123,10 @@ int unit_tests(){
     pass = false;
 
     // Initialize Oversize Matrix
+    try{
+        matrix m2(values1, height2, width2);
+        pass = false;
+    }
     // Initialize Null Matrix
     // Initialize Default Matrix
     // Initialize matrix properly
