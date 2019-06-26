@@ -99,7 +99,8 @@ int unit_tests(){
     std::vector<double> values1{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
     std::vector<double> values2{1,1,1,1,2,2,2,2};
     std::vector<double> values3{1,2,3,1,2,3,1,2,3,1,2,3};
-    std::vector<double> values_2x3{4,8,12,8,16,24}
+    std::vector<double> values_2x3{4,8,12,8,16,24};
+    std::vector<double> values1t{1,6,11,2,7,12,3,8,13,4,9,14,5,10,15};
 
 
     // Test Matrix Initialization
@@ -174,7 +175,7 @@ int unit_tests(){
     try{
         matrix m6(values1, height1, width1);
         matrix m7(values2, height2, width2);
-        m8 = matrix_multiply(m6,m7);
+        matrix m8 = matrix_multiply(m6,m7);
     }
     catch(std::string e){
         if(e == "Error: Width of input matrix 1 does not match height of input matrix 2. Multiplication is not defined!"){pass = true;}
@@ -190,10 +191,10 @@ int unit_tests(){
     // Test Null Input
     pass = false;
     try{
-        matrix m9(std::vector<double>, NULL, NULL);
-        matrix m10(std::vector<double>, NULL, NULL);
-        m11 = matrix_multiply(m9,m10);
-        if(mll.values = std::vector<double>() && m11.height() == m11.width() == 0){pass = true;}
+        matrix m9;
+        matrix m10;
+        matrix m11 = matrix_multiply(m9,m10);
+        if(m11.values() == std::vector<double>() && m11.height() == m11.width() == 0){pass = true;}
     }
     catch(std::string e){}
     if(pass){
@@ -209,8 +210,8 @@ int unit_tests(){
     try{
         matrix m12(values2, height2, width2);
         matrix m13(values3, height3, width3);
-        m14 = matrix_multiply(m12,m13);
-        if(m14.values == values_2x3 && m14.height() == height_2x3 && m14.width() == width_2x3){pass = true;}
+        matrix m14 = matrix_multiply(m12,m13);
+        if(m14.values() == values_2x3 && m14.height() == height_2x3 && m14.width() == width_2x3){pass = true;}
     }
     catch(std::string e){}
     if(pass){
@@ -222,9 +223,39 @@ int unit_tests(){
     }
 
     // Test Matrix Transposition
-        // Test Normal Input
+    // Test NULL Input
+    pass = false;
+    try{
+        matrix m15;
+        matrix m16 = matrix_transpose(m15);
+        if(m16.values() == std::vector<double>() && m16.height() == 0 && m16.width() == 0){pass = true;}
+    }
+    catch(std::string e){}
+    if(pass){
+        std::cout << "Unit Test Passed: Transpose NULL Input" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Transpose NULL Input" << std::endl;
+        error_count += 1;
+    }
 
-    // Return Number of Errors
+    // Test Normal Input
+    pass = false;
+    try{
+        matrix m17(values1, height1, width1);
+        matrix m18 = matrix_transpose(m17);
+        if(m18.values() == values1t && m18.height() == width1 && m18.width() == height1){pass = true;}
+    }
+    catch(std::string e){}
+    if(pass){
+        std::cout << "Unit Test Passed: Transpose Normal Input" << std::endl;
+    }
+    else{
+        std::cout << "Unit Test Failed: Transpose Normal Input" << std::endl;
+        error_count += 1;
+    }
+
+
     return error_count;
 }
 
