@@ -33,11 +33,13 @@ int main(void){
     int width1 = 5;
     int width2 = 4;
     int width3 = 3;
+    int unit_test_error_count;
     std::vector<double> values1{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
     std::vector<double> values2{1, 1, 1, 1, 2, 2, 2, 2};
     std::vector<double> values3{1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3};
 
-    unit_tests();
+    unit_test_error_count = unit_tests();
+    std::cout << "Unit Test Errors: " << unit_test_error_count << std::endl;
 
     // Matrix Initializations and Matrix Multiplication will throw std::string exceptions in the event that input fails sanity checking.
     try{
@@ -194,7 +196,7 @@ int unit_tests(){
         matrix m9;
         matrix m10;
         matrix m11 = matrix_multiply(m9,m10);
-        if(m11.values() == std::vector<double>() && m11.height() == m11.width() == 0){pass = true;}
+        if(m11.values() == std::vector<double>() && m11.height() == 0 && m11.width() == 0){pass = true;}
     }
     catch(std::string e){}
     if(pass){

@@ -106,7 +106,7 @@ inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
         return output_matrix;
     }
     catch (std::string e){
-        throw e;
+        throw;
     }
 }
 
@@ -135,7 +135,7 @@ inline matrix matrix_transpose(matrix input){
         return output_matrix;
     }
     catch (std::string e){
-        throw e;
+        throw;
     }
 }
 
