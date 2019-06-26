@@ -6,8 +6,8 @@ My sample includes 3 files, which are located in the "Davis-Ian" directory:
     "main_example.cpp": A script that performs unit testing and demonstrates the functionality in the library.
 
 
-"main_example.cpp" is intended to "demonstrate the correctness" of my solution.
+"main_example.cpp" is intended to "demonstrate the correctness" of my solution by calling unit_tests() and performing some basic exercises.
 When compiling main_example.cpp, keep it in the same directory as linalg.h and use the C++11 standard. Any compiler that complies with the standard should work.
-If using g++, you can navigate your command line interface to the directory containing the files and enter the command "g++ main.cpp -std=c++11".
+If using g++, you can navigate your command line interface to the directory containing the files and enter the command "g++ main_example.cpp -std=c++11".
 
 

@@ -42,7 +42,7 @@ Install g++ on Windows
 
     2. When offered the option, install the GUI. It will make selecting the appropriate packages much easier.
 
-    3. Once in the package selection GUI, be sure that the g++ package and its dependencies are marked for installation before applying the changes.
+    3. Once in the package selection GUI, be sure that the g++ package and its dependencies are marked for installation before applying the changes. At the time of writing, you can find this in the "Basic Setup" package list as "mingw32-gcc-g++-bin".
 
     4. Refer to the instructions in the "After Installing You Should ..." and "Environment Settings" sections to ensure that your command interface will be able to find g++. Be especially careful if you didn't use the default installation directory.
 
@@ -139,7 +139,9 @@ matrix_transpose(matrix1)
     The output will be a matrix struct representing the transpose of the input matrix.
     The function will throw a string error if the matrix struct to be returned fails to initialize.
 
-
+unit_tests()
+    This function performs tests to validate the library functionality. The results of specific tests are printed to standard out. This function can be used to validate that the library is working in a new environment.
+    The function returns an int equivalent to the number of tests failed.
 
 
 
