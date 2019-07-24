@@ -42,7 +42,7 @@ namespace linalg{
 
         public:
             // This function initializes the member variables. An empty matrix is created by default.
-            inline matrix(std::vector<double> input_values = std::vector<double>(), int input_height=0, int input_width=0){
+            inline matrix(const std::vector<double>& input_values = std::vector<double>(), const int input_height=0, const int input_width=0){
 
                 // Sanity check input
                 if (input_values.size() != input_height*input_width){
@@ -72,7 +72,7 @@ namespace linalg{
     // Library Functions
 
     // This function performs matrix multiplication of the first input by the second input.
-    inline matrix matrix_multiply(matrix multiplicand, matrix multiplier){
+    inline matrix matrix_multiply(const matrix& multiplicand, const matrix& multiplier){
 
         // Initialize Variables
         int output_height = multiplicand.height();
@@ -113,7 +113,7 @@ namespace linalg{
 
 
     // This function takes the transpose of the input matrix and returns it as a new matrix.
-    inline matrix matrix_transpose(matrix input){
+    inline matrix matrix_transpose(const matrix& input){
 
         // Initialize variables
         int output_height = input.width();
