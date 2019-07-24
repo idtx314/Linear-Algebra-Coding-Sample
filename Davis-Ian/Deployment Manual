@@ -87,13 +87,13 @@ Library Contents and Usage
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 General Philosophy
     All library resources are contained in the namespace "linalg".
-    The most important item in the library is the struct "matrix". Instances of this struct are used for matrix representation, and library functions make heavy use of this data type for input and output.
-    Linear algebra operations are provided by library functions. These typically accept one or more matrix structs as inputs and return a new matrix struct as a result. A function will never overwrite an existing matrix struct, so instances of matrix will persist in memory until they either fall out of scope or are explicitly destroyed or overwritten by the program.
+    The most important item in the library is the class "matrix". Instances of this class are used for matrix representation, and library functions make heavy use of this data type for input and output.
+    Linear algebra operations are provided by library functions. These typically accept one or more matrix objects as inputs and return a new matrix object as a result. A function will never overwrite an existing matrix object, so instances of matrix will persist in memory until they either fall out of scope or are explicitly destroyed or overwritten by the program.
     Operations that can fail will throw a std::string as an error if they do so. This allows the program to determine how an error should be responded to, if at all.
 
 
 matrix
-    The struct "matrix" represents all the information for a given m by n matrix in a portable package.
+    The class "matrix" represents all the information for a given m by n matrix in a portable package.
 
     Creating A matrix
         To initialize a new matrix, use this syntax:
@@ -109,7 +109,7 @@ matrix
 
         The variables "height" and "width" should be int variables representing the number of rows and columns in the matrix, respectively.
 
-        The length of "values_vector" will be checked during initialization to make sure it matches the matrix dimensions specified by the "height" and "width" variables. In the event of a mismatch, a string error will be thrown and a matrix will not be created. To prevent this safety from being circumvented, the member variables of a matrix struct cannot be modified except during initialization or by calling the initialization member function.
+        The length of "values_vector" will be checked during initialization to make sure it matches the matrix dimensions specified by the "height" and "width" variables. In the event of a mismatch, a string error will be thrown and a matrix will not be created. To prevent this safety from being circumvented, the member variables of a matrix object cannot be modified except during initialization or by calling the initialization member function.
 
     Extracting Data From A matrix
         In order to retrieve information about a matrix use the member functions.
@@ -126,15 +126,15 @@ matrix
 
 matrix_multiply(matrix1, matrix2)
     This function performs matrix multiplication, with matrix1 being multiplied by matrix2.
-    Both inputs must be matrix structs. The width of matrix1 must equal the height of matrix2.
-    The function will return a matrix struct representing the result of the matrix multiplication.
-    The function will throw a string error if matrix1.width() does not match matrix2.height() or if the matrix struct to be returned fails to initialize.
+    Both inputs must be matrix objects. The width of matrix1 must equal the height of matrix2.
+    The function will return a matrix object representing the result of the matrix multiplication.
+    The function will throw a string error if matrix1.width() does not match matrix2.height() or if the matrix object to be returned fails to initialize.
 
 matrix_transpose(matrix1)
     This function returns the transpose of a matrix.
-    The input must be a matrix struct.
-    The output will be a matrix struct representing the transpose of the input.
-    The function will throw a string error if the matrix struct to be returned fails to initialize.
+    The input must be a matrix object.
+    The output will be a matrix object representing the transpose of the input.
+    The function will throw a string error if the matrix object to be returned fails to initialize.
 
 unit_tests()
     This function performs tests to validate the library functionality. The results of specific tests are printed to standard out. This function can be used to validate that the library is working in a new environment.

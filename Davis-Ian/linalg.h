@@ -7,8 +7,8 @@ Copyright and Licensing
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Introduction
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-This library defines the struct "matrix" and several functions that perform matrix operations.
-Struct member variables can be changed only during initialization or when calling the initialization function. The values of these variables can be accessed using the member functions values(), height(), and width().
+This library defines the class "matrix" and several functions that perform matrix operations.
+class member variables can be changed only during initialization or when calling the initialization function. The values of these variables can be accessed using the member functions values(), height(), and width().
 This library will sanity check input and throw exceptions as a std::string. Handling these exceptions gracefully is left to the application programmer.
 For detailed instructions on library usage, refer to the Deployment Manual.
 All library resources are contained in the namespace "linalg".
@@ -33,7 +33,7 @@ This library requires the usage of the C++11 standard when compiling.
 
 namespace linalg{
 
-    struct matrix {
+    class matrix {
         private:
             std::vector<double> _values;
             int _height;
