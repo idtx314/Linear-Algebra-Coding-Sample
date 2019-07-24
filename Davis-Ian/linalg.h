@@ -79,7 +79,7 @@ namespace linalg{
         int output_width  = multiplier.width();
         int i, j, k;
         double sum = 0;
-        std::vector<double> output_data;
+        std::vector<double> output_data(output_height*output_width);
 
         // Sanity check input matrix dimensions
         if (multiplicand.width() != multiplier.height()){
@@ -96,7 +96,7 @@ namespace linalg{
                 }
 
                 // Append the result to the output data vector.
-                output_data.push_back(sum);
+                output_data[i*output_width + j] = sum;
                 sum = 0;
             }
         }
@@ -118,7 +118,7 @@ namespace linalg{
         // Initialize variables
         int output_height = input.width();
         int output_width = input.height();
-        std::vector<double> output_data;
+        std::vector<double> output_data (output_height*output_width);
         int i, j;
 
         // Iterate down the columns of the input matrix
@@ -126,7 +126,7 @@ namespace linalg{
             for (i=0; i<input.height(); i++){
 
                 // Append the values to the output data vector
-                output_data.push_back(input.values()[i*input.width() + j]);
+                output_data[j*output_width + i] = input.values()[i*input.width() + j];
             }
         }
 
