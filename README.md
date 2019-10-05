@@ -23,7 +23,7 @@ Refer to the [Deployment Manual][Manual] included in the package for detailed in
 
 
 
-[Manual]:
-[Manual-Compiling]:
-[Header]:
-[Demonstrator]:
+[Manual]:https://github.com/idtx314/Linear-Algebra-Coding-Sample/blob/master/Davis-Ian/Deployment%20Manual.txt
+[Manual-Compiling]:https://github.com/idtx314/Linear-Algebra-Coding-Sample/blob/master/Davis-Ian/Deployment%20Manual.txt#L66
+[Header]:https://github.com/idtx314/Linear-Algebra-Coding-Sample/blob/master/Davis-Ian/linalg.h
+[Demonstrator]:https://github.com/idtx314/Linear-Algebra-Coding-Sample/blob/master/Davis-Ian/main_example.cpp
