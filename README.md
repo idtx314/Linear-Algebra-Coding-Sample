@@ -14,8 +14,7 @@ The sample includes 3 files, which are located in the "Davis-Ian" directory:
 
 When compiling main_example.cpp, keep it in the same directory as linalg.h and use the C++11 standard. Any compiler that complies with the standard should work. For detailed instructions reference the [Deployment Manual][Manual-Compiling] included in the sample.
 
-If using g++, you can navigate your command line interface to the directory containing the source files and enter the command:
-    "g++ main_example.cpp -std=c++11"
+If using g++, you can navigate your command line interface to the directory containing the source files and enter the command `g++ main_example.cpp -std=c++11`.
 
 
 ## Advanced Usage
