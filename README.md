@@ -1,5 +1,5 @@
 ## Introduction
-This is a code sample containing a simple header library that provides  Matrix Multiplication and Transposition functions in a portable C++ package.
+This is a C++ code sample containing a simple header library that provides  Matrix Multiplication and Transposition functions in a portable C++ package.
 
 The sample includes 3 files, which are located in the "Davis-Ian" directory:
 
