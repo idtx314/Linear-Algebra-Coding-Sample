@@ -5,7 +5,7 @@ The sample includes 3 files, which are located in the "Davis-Ian" directory:
 
 * [Deployment Manual][Manual]: A more detailed set of instructions in plaintext for compiling against the library and including it in code.  
 * [linalg.h][Header]: A header library containing the linear algebra functions and related objects.  
-* [main_example.cpp][Demonsrator]: A script that performs unit testing and demonstrates the functionality in the library.  
+* [main_example.cpp][Demonstrator]: A script that performs unit testing and demonstrates the functionality in the library.  
 
 
 
